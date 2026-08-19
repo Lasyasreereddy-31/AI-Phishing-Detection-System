@@ -6,3 +6,4 @@ database/*.db
 reports/*.pdf
 .env
 *.log
+dataset/PhiUSIIL_Phishing_URL_Dataset.csv
