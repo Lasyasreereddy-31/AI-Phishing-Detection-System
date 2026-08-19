@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Phishing Detection - Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef3f8;
+            color: #222;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: #202428;
+            color: white;
+            padding: 25px 50px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 45px;
+        }
+
+
+        /* =========================
+           DASHBOARD CARDS
+        ========================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+
+        .card {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+            transition: transform 0.2s;
+        }
+
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+
+        .card h2 {
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+
+        .number {
+            font-size: 55px;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           NUMBER COLORS
+        ========================= */
+
+        .total {
+            color: #1677ff;
+        }
+
+        .phishing {
+            color: #e53935;
+        }
+
+        .legitimate {
+            color: #159447;
+        }
+
+        .warning {
+            color: #e53935;
+        }
+
+        .url {
+            color: #1677ff;
+        }
+
+        .email {
+            color: #8e44ad;
+        }
+
+
+        /* =========================
+           STATISTICS
+        ========================= */
+
+        .statistics {
+            background: white;
+            margin-top: 40px;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+        }
+
+
+        .statistics h2 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 35px;
+        }
+
+
+        /* =========================
+           STAT ROW
+        ========================= */
+
+        .stat-row {
+            margin: 25px 0;
+        }
+
+
+        .stat-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           PROGRESS BAR
+        ========================= */
+
+        .progress {
+            width: 100%;
+            height: 25px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+
+        .progress-phishing {
+            height: 100%;
+            background: #e53935;
+            border-radius: 20px;
+        }
+
+
+        .progress-safe {
+            height: 100%;
+            background: #159447;
+            border-radius: 20px;
+        }
+
+
+        /* =========================
+           NAVIGATION BUTTONS
+        ========================= */
+
+        .buttons {
+            text-align: center;
+            margin-top: 45px;
+        }
+
+
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            background: #1677ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 9px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+
+        .button:hover {
+            background: #095dcc;
+        }
+
+
+        /* =========================
+           RESPONSIVE DESIGN
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+
+            h1 {
+                font-size: 36px;
+            }
+
+
+            header {
+                padding: 20px;
+                font-size: 22px;
+            }
+
+
+            .container {
+                padding: 15px;
+            }
+
+
+            .stat-label {
+                font-size: 16px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+    🛡️ AI Phishing Detection System
+</header>
+
+
+<!-- =========================
+     MAIN CONTAINER
+========================= -->
+
+<div class="container">
+
+
+    <!-- TITLE -->
+
+    <h1>
+        📊 Security Dashboard
+    </h1>
+
+
+    <!-- =========================
+         DASHBOARD CARDS
+    ========================= -->
+
+    <div class="cards">
+
+
+        <!-- TOTAL SCANS -->
+
+        <div class="card">
+
+            <h2>
+                🔍 Total Scans
+            </h2>
+
+            <div class="number total">
+                {{ total_scans }}
+            </div>
+
+        </div>
+
+
+        <!-- PHISHING -->
+
+        <div class="card">
+
+            <h2>
+                🚨 Phishing / Suspicious
+            </h2>
+
+            <div class="number phishing">
+                {{ phishing_count }}
+            </div>
+
+        </div>
+
+
+        <!-- LEGITIMATE -->
+
+        <div class="card">
+
+            <h2>
+                ✅ Legitimate / Safe
+            </h2>
+
+            <div class="number legitimate">
+                {{ legitimate_count }}
+            </div>
+
+        </div>
+
+
+        <!-- THREAT PERCENTAGE -->
+
+        <div class="card">
+
+            <h2>
+                ⚠️ Threat Percentage
+            </h2>
+
+            <div class="number warning">
+                {{ phishing_percentage }}%
+            </div>
+
+        </div>
+
+
+        <!-- URL SCANS -->
+
+        <div class="card">
+
+            <h2>
+                🔗 URL Scans
+            </h2>
+
+            <div class="number url">
+                {{ url_scans }}
+            </div>
+
+        </div>
+
+
+        <!-- EMAIL SCANS -->
+
+        <div class="card">
+
+            <h2>
+                📧 Email Scans
+            </h2>
+
+            <div class="number email">
+                {{ email_scans }}
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================
+         SCAN STATISTICS
+    ========================= -->
+
+    <div class="statistics">
+
+
+        <h2>
+            📈 Scan Statistics
+        </h2>
+
+
+        <!-- =========================
+             PHISHING STATISTICS
+        ========================= -->
+
+        <div class="stat-row">
+
+
+            <div class="stat-label">
+
+                <span>
+                    🚨 Phishing / Suspicious
+                </span>
+
+                <span>
+                    {{ phishing_count }}
+                    ({{ phishing_percentage }}%)
+                </span>
+
+            </div>
+
+
+            <div class="progress">
+
+                <div class="progress-phishing"
+                     style="width: {{ phishing_percentage }}%;">
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================
+             LEGITIMATE STATISTICS
+        ========================= -->
+
+        <div class="stat-row">
+
+
+            <div class="stat-label">
+
+                <span>
+                    ✅ Legitimate / Safe
+                </span>
+
+                <span>
+                    {{ legitimate_count }}
+                    ({{ legitimate_percentage }}%)
+                </span>
+
+            </div>
+
+
+            <div class="progress">
+
+                <div class="progress-safe"
+                     style="width: {{ legitimate_percentage }}%;">
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================
+         NAVIGATION BUTTONS
+    ========================= -->
+
+    <div class="buttons">
+
+
+        <a href="/" class="button">
+            🏠 Home
+        </a>
+
+
+        <a href="/history" class="button">
+            📋 Scan History
+        </a>
+
+
+        <a href="/analyze_url" class="button">
+            🔗 Analyze URL
+        </a>
+
+
+        <a href="/email_analyzer" class="button">
+            📧 Analyze Email
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

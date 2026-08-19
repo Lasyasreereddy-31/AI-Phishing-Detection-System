@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Phishing Detection System</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef3f8;
+        }
+
+        /* Navigation Bar */
+
+        .navbar {
+            background: #202428;
+            padding: 18px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: 6px;
+        }
+
+        .nav-links a:hover {
+            background: #1677ff;
+        }
+
+        /* Page Content */
+
+        .page-content {
+            min-height: calc(100vh - 80px);
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        🛡️ AI Phishing Detection
+    </a>
+
+    <div class="nav-links">
+
+        <a href="/">🏠 Home</a>
+
+        <a href="/analyze_url">🔗 URL Analyzer</a>
+
+        <a href="/email_analyzer">📧 Email Analyzer</a>
+
+        <a href="/dashboard">📊 Dashboard</a>
+
+        <a href="/history">📋 History</a>
+
+    </div>
+
+</nav>
+
+<div class="page-content">
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+</body>
+</html>

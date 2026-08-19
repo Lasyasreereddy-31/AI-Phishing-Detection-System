@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="analyzer-container">
+
+    <h1>📧 Email Phishing Analyzer</h1>
+
+    <p>
+        Enter an email message below to check whether it contains
+        suspicious phishing indicators.
+    </p>
+
+    <form action="/analyze_email" method="POST">
+
+        <textarea
+            name="email"
+            placeholder="Paste the email message here..."
+            rows="12"
+            required></textarea>
+
+        <button type="submit">
+            🔍 Analyze Email
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
